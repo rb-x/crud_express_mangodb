@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <title>Database </title>
+</head>
+
+<body>
+    <header>
+
+        <!-- As a heading -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <a class="navbar-brand" href="/">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-normal" href="/">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger font-weight-normal" href="/db">Consulter la BDD <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container p-3">
+        <div class="row">
+            <h4>Bienvenue sur la plateforme de gestion </h4>
+        </div>
+        <div class="row p-3">
+            <p> Ici vous pourrez consulter les informations provenant de la base de donnée :</p>
+        </div>
+
+        <div>
+
+            <button class="btn btn-info font-weight-bold mb-2">
+            <a href="/add" class="text-light" style="text-decoration: none"> Ajouter </a> 
+            </button>
+        </div>
+
+        <div>
+            <ul class="list-group">
+                <% for (element of data) {%>
+                <li class="list-group-item d-flex justify-content-between pb-2 " 
+                keys=[<%= element._id %>] > 
+                   <span class="font-weight-bold"> <%=  element.name  %> </span>
+
+                    <div class="genre">
+                        <%= element.genre %>
+                    </div>
+
+
+                    <div class="icons" >
+                            <a href="/db/<%= element._id %>"  style="text-decoration: none"> 
+     
+                                <i class="far fa-edit m-2" aria-hidden="true"></i>
+                            </a>
+
+             
+                        
+                         <a href="/db/delete/<%= element._id %>" style="text-decoration: none"> 
+                     
+                            <i class="far fa-trash-alt" style="color:red" aria-hidden="true" 
+                            onclick="confirm('Etes vous sur de vouloir supprimer <%= element.name %> ?')"></i>
+                      
+                         </a>
+
+
+                    </div>
+                
+                </li>
+                <% }%>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
